@@ -1,10 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:test_app/constants/global_pref_constants.dart';
+import 'package:test_app/data/auth/auth_repository.dart';
 import 'package:test_app/data/traffic/shymbulak_repository.dart';
+import 'package:test_app/domain/auth/use_case/auth_use_case.dart';
 import 'package:test_app/services/shymbulak_service.dart';
 
 import '../network/network_client.dart';
-
 
 final locator = GetIt.instance;
 Future<void> setupLocator() async {
@@ -34,11 +35,12 @@ void _apiServiceModule() async {
 void _repositoryModule() {
   ///платежи
   locator.registerFactory(() => ShymbulakRepository());
+  locator.registerFactory(() => AuthRepository());
 }
 
 /// для useCase
 void _useCaseModule() {
-  // locator.registerFactory(() => GetMoviesInTheatreUseCase());
+  locator.registerFactory(() => AuthUserUseCase());
   // locator.registerFactory(() => GetPopularMoviesUseCase());
   // locator.registerFactory(() => GetDetailedMovieInfoUseCase());
   // locator.registerFactory(() => GetMoviePosterUseCase());
