@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_app/auth/cubit/auth_cubit.dart';
 import 'package:test_app/di/di_locator.dart';
+import 'package:test_app/launcher/cubit/launcher_cubit.dart';
 
-import 'login_screen.dart';
+import 'auth/ui/login_screen.dart';
+import 'launcher/ui/launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: const LoginScreen(),
+      home: BlocProvider(create: (_) => LauncherCubit() , child: const LauncherScreen()),
     );
   }
 }
