@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -26,7 +25,9 @@ class TariffsScreen extends StatelessWidget {
                 imagePath: imageUrl,
                 text: title,
                 onTap: () {
-                  context.read<ActivitiesCubit>().setActivities();
+                  final _cubit = context.read<ActivitiesCubit>();
+                  _cubit.setActivities();
+                  _cubit.setClear();
                   Navigator.pop(context);
                 },
               ),
@@ -106,7 +107,7 @@ class TariffsScreen extends StatelessWidget {
                                             state.choosedDate.isNotEmpty
                                                 ? state.choosedDate
                                                 : "Выберите Дату",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400))

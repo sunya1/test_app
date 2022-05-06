@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_app/di/di_locator.dart';
+import 'package:test_app/screens/home/cubit/acitivity_cubit.dart';
 import 'package:test_app/screens/launcher/cubit/launcher_cubit.dart';
 import 'package:test_app/screens/launcher/ui/launcher.dart';
 
@@ -17,19 +18,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LauncherCubit()),
+        BlocProvider(create: (context) => ActivitiesCubit()),
       ],
-      supportedLocales: const [
-        Locale('ru', ''), //Russia
-      ],
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: BlocProvider(
-          create: (_) => LauncherCubit(), child: const LauncherScreen()),
+      child: MaterialApp(
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('ru', ''), //Russia
+        ],
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        home: const LauncherScreen(),
+      ),
     );
   }
 }

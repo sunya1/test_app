@@ -149,29 +149,33 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(width: 1, color: Colors.white),
-                            ),
-                            child: SvgPicture.asset(AppIcons.googleIcon),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(width: 1, color: Colors.white),
-                            ),
-                            child: SvgPicture.asset(AppIcons.facebookIcon),
-                          ),
-                        ],
+                      SizedBox(
+                        height: 50,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 2,
+                          separatorBuilder: (_ , index) => const SizedBox(width: 8),
+                          itemBuilder: (_, index) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                              ),
+                              child: const Text(
+                                "G",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold),
+                              )
+                        
+                              /// пытался добавить SvgPicture.asset(AppIcons.googleIcon), но кажеся svg в неправильном формате
+                              ),
+                        ),
                       )
                     ]),
               ),

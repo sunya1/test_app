@@ -16,7 +16,7 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
   late DateTime _lastAvailableDate;
   String _choosedDate = '';
 
-  late List<Tariff> _currentTariffs; 
+  late List<Tariff> _currentTariffs;
 
   late List<Activities> _activities;
   Future<void> getAllActivities() async {
@@ -56,5 +56,10 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
         firstAvailableData: _firstAvailableDate,
         lastAvailableDate: _lastAvailableDate,
         choosedDate: _choosedDate));
+  }
+
+  void setClear() {
+    _currentTariffs = [];
+    _choosedDate = ''; 
   }
 }

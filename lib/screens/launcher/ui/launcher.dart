@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/screens/auth/cubit/auth_cubit.dart';
 import 'package:test_app/screens/auth/ui/login_screen.dart';
-import 'package:test_app/screens/home/cubit/acitivity_cubit.dart';
 import 'package:test_app/screens/home/ui/activities_screen.dart';
 import 'package:test_app/screens/launcher/cubit/launcher_cubit.dart';
 import 'package:test_app/screens/launcher/cubit/launcher_state.dart';
@@ -33,7 +32,7 @@ class _LauncherScreenState extends State<LauncherScreen> {
             return BlocProvider(create: (_) => AuthCubit(), child: const LoginScreen());
           }
           if (state is AuthorizedState) {
-            return BlocProvider(create : (_) => ActivitiesCubit() , child: const ActivitiesScreen());
+            return const ActivitiesScreen();
           }
           return const Scaffold(body: Center(child: CircularProgressIndicator()));
         },
