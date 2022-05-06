@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:test_app/components/app_custom_button.dart';
+import 'package:test_app/screens/home/ui/widgets/slivers_app_bar.dart';
 import 'package:test_app/theme/colors.dart';
 
 import '../cubit/acitivity_cubit.dart';
@@ -10,31 +11,28 @@ import '../cubit/activity_state.dart';
 
 class TariffsScreen extends StatelessWidget {
   final String imageUrl;
-  const TariffsScreen({Key? key, required this.imageUrl}) : super(key: key);
+  final String title;
+  const TariffsScreen({Key? key, required this.imageUrl, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
-      body: SingleChildScrollView(
-        child:
-            BlocBuilder<ActivitiesCubit, ActivitiesState>(builder: (_, state) {
-          if (state is TariffState) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CachedNetworkImage(
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  imageUrl: imageUrl,
-                  progressIndicatorBuilder: (context, s, p) =>
-                      const Center(child: CircularProgressIndicator()),
-                ),
-                Container(
+      body: BlocBuilder<ActivitiesCubit, ActivitiesState>(builder: (_, state) {
+        if (state is TariffState) {
+          return CustomScrollView(
+            slivers: [
+              AppBarWidget(
+                imagePath: imageUrl,
+                text: title,
+                onTap: () {
+                  context.read<ActivitiesCubit>().setActivities();
+                  Navigator.pop(context);
+                },
+              ),
+              SliverToBoxAdapter(
+                child: Container(
                   decoration: const BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(35.0),
                       topRight: Radius.circular(35.0),
@@ -236,13 +234,13 @@ class TariffsScreen extends StatelessWidget {
                           ]),
                         ]),
                   ),
-                )
-              ],
-            );
-          }
-          return const SizedBox();
-        }),
-      ),
+                ),
+              )
+            ],
+          );
+        }
+        return const SizedBox();
+      }),
       // bottomNavigationBar: Padding(
       //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
       //   child: Column(

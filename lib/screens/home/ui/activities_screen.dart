@@ -30,7 +30,7 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
           title: const Text(
             "Активности",
             style: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+                fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
           ),
           backgroundColor: Colors.white,
         ),
@@ -53,7 +53,7 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
                               MaterialPageRoute(
                                   builder: (context) => BlocProvider.value(
                                       value: _cubit,
-                                      child:  TariffsScreen(imageUrl: state.activities[index].imageUrl,))),
+                                      child:  TariffsScreen(imageUrl: state.activities[index].imageUrl, title:state.activities[index].nameRu ,))),
                             );
                           },
                           child: Container(
