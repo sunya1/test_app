@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:test_app/app_custom_button.dart';
-import 'package:test_app/app_icons.dart';
-import 'package:test_app/auth/cubit/auth_cubit.dart';
-import 'package:test_app/auth/cubit/auth_state.dart';
-import 'package:test_app/colors.dart';
-import 'package:test_app/custom_text_field.dart';
-import 'package:test_app/home/home_screen.dart';
+import 'package:test_app/components/app_custom_button.dart';
+import 'package:test_app/theme/app_icons.dart';
+import 'package:test_app/theme/colors.dart';
+import 'package:test_app/components/custom_text_field.dart';
+import 'package:test_app/screens/auth/cubit/auth_cubit.dart';
+import 'package:test_app/screens/auth/cubit/auth_state.dart';
+import 'package:test_app/screens/home/ui/activities_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               Navigator.pushReplacement<void, void>(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const HomeScreen(),
+                  builder: (BuildContext context) => const ActivitiesScreen(),
                 ),
               );
             } else if (state is ShowPasswordState) {

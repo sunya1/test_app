@@ -45,4 +45,9 @@ class AuthCubit extends Cubit<AuthState> {
   void setShowPassword(bool isObscureText) {
     emit(ShowPasswordState(isObscureText: isObscureText));
   }
+
+  void logOut() async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }
