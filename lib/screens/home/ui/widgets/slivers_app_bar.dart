@@ -6,19 +6,19 @@ class AppBarWidget extends StatelessWidget {
   final String text;
   final String imagePath;
   final bool centerTitle;
-  final Function() onTap; 
+  final Function() onTap;
 
-  const AppBarWidget({
-    Key? key,
-    required this.text,
-    required this.imagePath,
-    this.centerTitle = true,
-    required this.onTap
-  }) : super(key: key);
+  const AppBarWidget(
+      {Key? key,
+      required this.text,
+      required this.imagePath,
+      this.centerTitle = true,
+      required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // 2
+    final _size = MediaQuery.of(context).size; 
     return SliverAppBar(
       leading: InkWell(
           onTap: onTap,
@@ -27,8 +27,8 @@ class AppBarWidget extends StatelessWidget {
             size: 16,
           )),
       automaticallyImplyLeading: false,
-      expandedHeight: 300.0,
-      collapsedHeight: 100,
+      expandedHeight: _size.height * 0.3  ,
+      collapsedHeight: _size.height * 0.15,
       pinned: true,
       elevation: 0,
       flexibleSpace: Stack(
