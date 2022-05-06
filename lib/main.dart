@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/auth/cubit/auth_cubit.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_app/di/di_locator.dart';
-import 'package:test_app/launcher/cubit/launcher_cubit.dart';
-
-import 'auth/ui/login_screen.dart';
-import 'launcher/ui/launcher.dart';
+import 'package:test_app/screens/launcher/cubit/launcher_cubit.dart';
+import 'package:test_app/screens/launcher/ui/launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +18,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ru', ''), //Russia
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: BlocProvider(create: (_) => LauncherCubit() , child: const LauncherScreen()),
+      home: BlocProvider(
+          create: (_) => LauncherCubit(), child: const LauncherScreen()),
     );
   }
 }

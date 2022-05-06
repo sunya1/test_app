@@ -17,7 +17,7 @@ class ShymbulakService {
     );
   }
 
-  Future<Response> getAllTraffic() async {
+  Future<Response> getAllActivities() async {
     final _response = await _httpClient;
     return _response.get(
       NetworkCallRoutes.getAllTraffics,
